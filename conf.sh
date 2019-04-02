@@ -21,6 +21,7 @@ echo "Please enter the port that you want to connect to SSH with:"
 read -p "(Default Port: 22511 ):" cussshport
 [ -z "${cussshport}" ] && cussshport="22511"
 sed -i 's/.*Port 22.*/Port ${cussshport}/g' /etc/ssh/sshd_config
+sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
 firewall-cmd --zone=public --add-port=${cussshport}/tcp --permanent
 firewall-cmd --reload
 systemctl restart sshd
