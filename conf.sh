@@ -1,5 +1,7 @@
 #!/bin/bash
 # My first script
+# Current folder
+curdir=`pwd`
 ##################################update
 yum -y update
 yum -y install epel-release nano git firewalld
@@ -12,20 +14,20 @@ systemctl status firewalld
 mkdir -p ~/.ssh
 echo "Please enter your public key for your secure SSH connection:"
 read -p "(Enter it without ssh-rsa):" sshauthkey
-echo ssh-rsa $sshauthkey >> ~/.ssh/authorized_keys
+echo ssh-rsa ${sshauthkey} >> ~/.ssh/authorized_keys
 chmod -R go= ~/.ssh
 chown -R root:root ~/.ssh
 echo "Please enter the port that you want to connect to SSH with:"
 read -p "(Default Port: 22511 ):" cussshport
 [ -z "${cussshport}" ] && cussshport="22511"
-sed -i 's/.*Port 22.*/Port $cussshport/g' /etc/ssh/sshd_config
-firewall-cmd --zone=public --add-port=$cussshport/tcp --permanent
+sed -i 's/.*Port 22.*/Port ${cussshport}/g' /etc/ssh/sshd_config
+firewall-cmd --zone=public --add-port=${cussshport}/tcp --permanent
 firewall-cmd --reload
 systemctl restart sshd
 ##################################hostname
 echo "Please enter your hostname:"
 read -p "(Something like: ns.domain.tld):" hn
-hostname $hn
+hostname ${hn}
 ###################################vpnserver
 cd /opt
 git clone https://github.com/SoftEtherVPN/SoftEtherVPN_Stable.git
@@ -34,3 +36,6 @@ make
 make install
 ./vpnserver start
 ####################################proxyserver
+cd ${curdir}/ss
+chmod +x shadowsocks.sh
+./shadowsocks.sh
