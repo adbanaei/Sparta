@@ -1,0 +1,14 @@
+#!/bin/bash
+# My first script
+
+yum update -y
+df -h
+yum install nano
+mkdir -p ~/.ssh
+echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDE+EEbUZCGZO1YeMo5cOlhbqcRhxPmXEsXO8K7nR0sPdKkTsoBRcEVzI809cYGpCrJMnRZbK/z28Sxy2T+GD9W85H0TNeSdT1MawRzwn940mnSzbmEs1TBs01PtfmS24gWNgBdhUuHprjeCHcSjz94UoEPwV5dlTEUVjeMRg9xqJZCmPim6Y7Vx8Rxo6kaFuKGk5NjNXZZ1B+tNL2Jhpa50R9Aa3ZeYSbafESdoGB9ExbmbTItZnVtQldKl9yrgWW/bHI682Vo9jvIvH0nFTqrnqxHtFh9POymuv2Er7t/WAKYkKoad+0C+cGLLP97mPdLLu8GX4Aw7vsQXBQOx3jX/GsMXzQXC0J/BmrnERZ7D497sKXuUpX8mgGv+NKJK29aPAJEFTJQI/aD6x4Qun7odg87MFY8tD+EN4zS1gRFDRAWjsxwexa+wHoaMYbDLG5rVQTaxlsa1cRnfmPNaU10+PgCH2FE8PvhSPfX2sXGWgzTp5LLELlzjKlFRVYULLl/ocfdCqD2Do3ppbVxJjWmp3pOwzYj/iRZ2OTVT7BH3XuaiKjPQrVphTVb3OsVotvEAsVf0jz/6kT6o2ShN943D2JdBolVjbJGo9I7xG2PKKqcmKfSbtU2tyNTLuKzs9XFuyoS0cE0jSWXiry0/HGS8uxk19oVhGqjOYHK7J3fqw== >> ~/.ssh/authorized_keys
+chmod -R go= ~/.ssh
+chown -R root:root ~/.ssh
+nano /etc/ssh/sshd_config
+systemctl restart sshd
+hostname sparta.mlsrp.ir
+hostname
