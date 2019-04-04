@@ -2,8 +2,7 @@
 # My first script
 # Current folder
 curdir=`pwd`
-##################################update
-yum -y update
+##################################requirement
 yum -y install epel-release nano git firewalld
 yum -y groupinstall "Development Tools"
 ##################################firewall
@@ -36,7 +35,20 @@ cd SoftEtherVPN
 make
 make install
 ./vpnserver start
+firewall-cmd --zone=public --add-port=443/tcp --permanent
+firewall-cmd --zone=public --add-port=8888/tcp --permanent
+firewall-cmd --zone=public --add-port=992/tcp --permanent
+firewall-cmd --zone=public --add-port=5555/tcp --permanent
+firewall-cmd --zone=public --add-port=1194/tcp --permanent
+firewall-cmd --reload
 ####################################proxyserver
 cd ${curdir}/ss
 chmod +x shadowsocks.sh
 ./shadowsocks.sh
+read -p "(Enter shadowsocks port for firewall):" ssport
+firewall-cmd --zone=public --add-port=${ssport}/tcp --permanent
+firewall-cmd --reload
+###################################reboot
+echo "If there was no error, your vpn server is ready to use"
+read -n 1 -s -r -p "Press any key to reboot:"
+reboot
