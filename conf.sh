@@ -45,6 +45,7 @@ firewall-cmd --reload
 cd ${curdir}/ss
 chmod +x shadowsocks.sh
 ./shadowsocks.sh
+/etc/init.d/shadowsocks start
 read -p "(Enter shadowsocks port for firewall):" ssport
 firewall-cmd --zone=public --add-port=${ssport}/tcp --permanent
 firewall-cmd --reload
