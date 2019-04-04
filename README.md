@@ -5,9 +5,9 @@ It's a VPN and Proxy server base on CentOS7
 This script will configurate your freshly installed CentOS7. 
 Here the thing it does:
 1. Secure SSH
-* Activate key authentication
-* Disable the password authentication
-* Change its default port
+    - Activate key authentication
+    - Disable the password authentication
+    - Change its default port
 2. Set hostname
 3. Install SoftEtherVPN
 4. Install and configurate Shadowsocks-Python
@@ -28,10 +28,10 @@ chmod +x install.sh
 ./install.sh
 ```
 
-#Customize SoftEtherVPN
+# Customize SoftEtherVPN
 You can download SoftEtherVPN server manager GUI for windows and mac from [here](https://www.softether-download.com/)
 
-#Customize Shadowsocks
+# Customize Shadowsocks
 You can configure the Shadowsocks by change the its conf file:
 ```
 nano /etc/shadowsocks.json
@@ -62,6 +62,8 @@ firewall-cmd --zone=public --add-port=9383/tcp --permanent
 firewall-cmd --zone=public --add-port=9384/tcp --permanent
 firewall-cmd --reload
 ```
-> Feel free to share your thoughts!
 
-Copyright (C) 2019 adbanaei
+# Talk to me
+Feel free to share your thoughts!
+
+> Copyright (C) 2019 adbanaei
