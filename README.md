@@ -56,7 +56,12 @@ Like this:
 And do this to apply them:
 ```
 /etc/init.d/shadowsocks restart
+firewall-cmd --zone=public --add-port=9381/tcp --permanent
+firewall-cmd --zone=public --add-port=9382/tcp --permanent
+firewall-cmd --zone=public --add-port=9383/tcp --permanent
+firewall-cmd --zone=public --add-port=9384/tcp --permanent
+firewall-cmd --reload
 ```
-Feel free to share your thoughts!
+> Feel free to share your thoughts!
 
 Copyright (C) 2019 adbanaei
