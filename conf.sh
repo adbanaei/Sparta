@@ -12,8 +12,8 @@ systemctl status firewalld
 ######################################ssh
 mkdir -p ~/.ssh
 echo "Please enter your public key for your secure SSH connection:"
-read -p "(Enter it without ssh-rsa):" sshauthkey
-echo ssh-rsa ${sshauthkey} >> ~/.ssh/authorized_keys
+read -p "(Enter it completely):" sshauthkey
+echo ${sshauthkey} >> ~/.ssh/authorized_keys
 chmod -R go= ~/.ssh
 chown -R root:root ~/.ssh
 echo "Please enter the port that you want to connect to SSH with:"
