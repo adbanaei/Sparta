@@ -15,8 +15,9 @@ Here the thing it does:
 # How to use
 First, update your system:
 ```
-yum -y update
-yum -y upgrade
+yum -y install git;
+yum -y update;
+yum -y upgrade;
 reboot
 ```
 Then you can use it:
@@ -24,8 +25,8 @@ Then you can use it:
 cd /opt
 git clone https://github.com/adbanaei/Sparta.git
 cd Sparta/
-chmod +x install.sh
-./install.sh
+chmod +x conf.sh
+./conf.sh
 ```
 
 # Customize SoftEtherVPN
