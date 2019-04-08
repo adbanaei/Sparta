@@ -22,11 +22,11 @@ reboot
 ```
 Then you can use it:
 ```
-cd /opt
-git clone https://github.com/adbanaei/Sparta.git
-cd Sparta/
-chmod +x conf.sh
-./conf.sh
+cd /opt;
+git clone https://github.com/adbanaei/Sparta.git;
+cd Sparta/;
+chmod +x conf.sh;
+./conf.sh;
 ```
 
 # Customize SoftEtherVPN
