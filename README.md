@@ -30,23 +30,23 @@ Then you can use it:
 
 To secure ssh connection use:
 ```
-    echo "./sparta secure-ssh"
+./sparta secure-ssh
 ```
 To install softether vpn server use:
 ```
-    echo "./sparta softether-install"
+./sparta softether-install
 ```
 To install & config shaddowsocks use:
 ```
-    echo "./sparta shadowsocks-install"
+./sparta shadowsocks-install
 ```
 To install wireguard vpn server use:
 ```
-    echo "./sparta wireguard-install"
+./sparta wireguard-install
 ```
 To config wireguard:
 ```
-    echo "./sparta wireguard-config"
+./sparta wireguard-config
 ```
 
 # Customize SoftEtherVPN
