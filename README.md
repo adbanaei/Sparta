@@ -11,6 +11,7 @@ Here the thing it does:
 2. Set hostname
 3. Install SoftEtherVPN
 4. Install and configurate Shadowsocks-Python
+5. Install and configurate Wireguard
 
 # How to use
 First, update your system:
@@ -18,15 +19,34 @@ First, update your system:
 yum -y install git;
 yum -y update;
 yum -y upgrade;
-reboot
-```
-Then you can use it:
-```
+# Reboot if needed!
 cd /opt;
 git clone https://github.com/adbanaei/Sparta.git
 cd Sparta/;
-chmod +x conf.sh;
-./conf.sh;
+chmod +x sparta.sh;
+./sparta requirement
+```
+Then you can use it:
+
+To secure ssh connection use:
+```
+    echo "./sparta secure-ssh"
+```
+To install softether vpn server use:
+```
+    echo "./sparta softether-install"
+```
+To install & config shaddowsocks use:
+```
+    echo "./sparta shadowsocks-install"
+```
+To install wireguard vpn server use:
+```
+    echo "./sparta wireguard-install"
+```
+To config wireguard:
+```
+    echo "./sparta wireguard-config"
 ```
 
 # Customize SoftEtherVPN
