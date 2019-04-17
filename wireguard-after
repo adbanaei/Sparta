@@ -1,0 +1,44 @@
+###################################wireguard
+mkdir /etc/wireguard && cd /etc/wireguard
+umask 077
+wg genkey | tee privatekey | wg pubkey > publickey
+touch wg0.conf
+ip link add dev wg0 type wireguard
+
+echo "Please enter the port which you want to connect to wireguard with:"
+read -p "(Default Port: 34777 ):" wgport
+[ -z "${wgport}" ] && wgport="34777"
+read -p "(Please enter your client Public Key: ):" cPK
+echo "Please enter wireguard server IP address:"
+read -p "(eg: 192.168.89.1/24 ):" wgip
+echo "Please enter your allowed IP address range:"
+read -p "(eg: 192.168.89.0/24 ):" aipr
+
+ip address add dev wg0 ${wgip}
+wg set wg0 listen-port ${wgport} private-key privatekey peer ${cPK} allowed-ips ${aipr}
+ip link set up dev wg0
+wg setconf wg0 wg0.conf
+wg-quick save wg0
+######################################Nat & Firewall
+cat <<EOF > /etc/firewalld/services/wireguard.xml
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>wireguard</short>
+  <description>WireGuard (wg) custom installation</description>
+  <port protocol="udp" port="${wgport}"/>
+  <port protocol="tcp" port="${wgport}"/>
+</service>
+EOF
+firewall-cmd --add-service=wireguard --permanent
+firewall-cmd --zone=public --add-masquerade --permanent
+firewall-cmd --reload
+firewall-cmd --list-all
+sysctl -w net.ipv4.ip_forward=1
+sysctl -w net.ipv6.conf.all.forwarding=1
+tee -a /etc/sysctl.d/99-sysctl.conf
+sysctl -w net.ipv4.ip_forward=1
+sysctl -w net.ipv6.conf.all.forwarding=1
+###################################reboot
+echo "If there was no error, your vpn server is ready to use"
+read -n 1 -s -r -p "Press any key to reboot:"
+reboot
